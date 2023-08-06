@@ -1,0 +1,10 @@
+{% extends 'default.html' %}
+
+{% block title %}
+{{ message.title}}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ message.title}}</h1>
+    {{message.content|safe}}
+{% endblock content %}
