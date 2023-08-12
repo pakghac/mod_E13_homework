@@ -33,13 +33,16 @@ class Category(models.Model):
     ]
     categoryName = models.CharField(max_length=2, choices=CATEGORY_NAME_CHOICES)
 
+    def __str__(self):
+        return self.get_categoryName_display()
+
 
 class Message(models.Model):
     dateTimeCreation = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    messageAuthor = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
-    content = giRichTextUploadingField()
+    content = RichTextUploadingField()
 
     def __str__(self):
         return self.title
@@ -47,6 +50,6 @@ class Message(models.Model):
 
 class Response(models.Model):
     message = models.ForeignKey(Message, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    responseAuthor = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     isAccepted = models.BooleanField(null=True)

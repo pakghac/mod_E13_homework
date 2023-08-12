@@ -10,7 +10,7 @@
     {% if messages %}
         {% for message in messages %}
             <h2><a href="{{ message.id }}">{{ message.title }}</a></h2>
-            <p>{{ message.user }}</p>
+            <p>{{ message.messageAuthor }}</p>
             <p>{{ message.dateTimeCreation }}</p>
         {% endfor %}
     {% else %}
